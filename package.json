@@ -25,7 +25,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-base64ToImage",
+    "start": "egg-scripts start --daemon --title=egg-server-base64ToImage --port=8800",
     "stop": "egg-scripts stop --title=egg-server-base64ToImage",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",

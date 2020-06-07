@@ -23,8 +23,21 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  config.view = {
+    mapping: {
+      '.ejs': 'ejs'
+    }
+  }
+
+  config.ejs = {}
+
   return {
     ...config,
     ...userConfig,
+    security: {
+      csrf: {
+        enable: false,
+      },
+    }
   };
 };

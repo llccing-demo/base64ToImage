@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/Cookies.js/1.2.1/cookies.min.js"></script>
+  <style>
+    img {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="capture">
+    <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2703043434,1252590424&fm=26&gp=0.jpg" alt="">
+
+    <h3>我是一个好看的头像</h3>
+  </div>
+
+  <button>截图分享一下吧</button>
+  <script>
+    $('button').click(() => {
+      const capture = document.querySelector('.capture')
+      console.log(capture.scrollHeight)
+      // $('img').attr('crossOrigin', 'anonymous')
+      html2canvas(capture, {
+        useCORS: true,
+        height: capture.scrollHeight
+      }).then(canvas => {
+        const base64 = canvas.toDataURL('image/png', 1.0)
+        const img = document.createElement('img')
+        img.src = base64
+        document.body.appendChild(img)
+        upload(base64)
+      });
+    })
+
+    function upload(data) {
+      $.ajax({
+        url: '/upload',
+        type: 'post',
+        data: { imgData: data }
+      }).then(res => {
+        console.log(11, res)
+      }).catch(e => {
+        console.log(e)
+      })
+    }
+  </script>
+</body>
+
+</html>

@@ -38,11 +38,6 @@ module.exports = appInfo => {
       csrf: {
         enable: false,
       },
-    },
-    cluster: {
-      listen: {
-        hostname: '0.0.0.0'
-      }
     }
   };
 };
